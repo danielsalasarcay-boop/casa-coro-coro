@@ -124,7 +124,7 @@
       D.addEventListener('pointermove', function (e) {
         tx = e.clientX; ty = e.clientY;
         cur.classList.add('on');
-        cur.classList.toggle('big', !!(e.target.closest && e.target.closest('a, button, .panel, .ring-item, .gal-cell')));
+        cur.classList.toggle('big', !!(e.target.closest && e.target.closest('a, button, .panel, .gal-cell')));
         if (!moving) { moving = true; requestAnimationFrame(follow); }
       });
       D.addEventListener('pointerleave', function () { cur.classList.remove('on'); });
@@ -257,7 +257,7 @@
   if (pin && !REDUCED) (function () {
     var stage = $('.eye-stage', pin), fishEl = $('.eye-fish', pin), macro = $('.eye-macro', pin), copy = $('.eye-copy', pin),
         dest = $('.eye-dest', pin), cols = $('.dest-cols', pin), plaque = $('.dest-plaque', pin);
-    var vw, vh, FW, FH, MD, s0, s1, dx, dy, cur = 0, vis = false, run = false, tk = 0;
+    var vw, vh, FW, FH, MD, s0, s1, sHide, dx, dy, cur = 0, vis = false, run = false, tk = 0;
     var EX = 0.1775, EY = 0.4946, EYE_IN_FISH = 0.06, EYE_IN_MACRO = 0.63, PUPIL = 0.15;
     function measure() {
       vw = stage.clientWidth; vh = stage.clientHeight;
@@ -265,6 +265,7 @@
       var topPct = parseFloat(getComputedStyle(fishEl).top) / vh;
       s0 = (EYE_IN_FISH * FW) / (EYE_IN_MACRO * MD);
       s1 = 1.14 * (Math.sqrt(vw * vw + vh * vh) / 2) / (PUPIL * MD);
+      sHide = (Math.sqrt(vw * vw + vh * vh) / 2) / (0.3 * MD);
       dx = vw / 2 - (vw / 2 + (EX - 0.5) * FW);
       dy = vh / 2 - (topPct * vh + (EY - 0.5) * FH);
     }
@@ -273,11 +274,12 @@
       var q = clamp((p - 0.1) / 0.68, 0, 1);
       var s = s0 * Math.pow(s1 / s0, q), Z = s / s0;
       var k = ss(q / 0.22), bob = (1 - k) * Math.sin(tk * 0.02) * 7;
-      var fo = 1 - clamp((s - 0.5) / 0.45, 0, 1);
+      /* el pez sigue debajo mientras el ojo macro se funde encima; se oculta cuando el macro ya llena la pantalla */
+      var fo = 1 - clamp((s - sHide * 0.55) / (sHide * 0.45), 0, 1);
       fishEl.style.opacity = fo.toFixed(3);
       fishEl.style.visibility = fo <= 0 ? 'hidden' : 'visible';
       fishEl.style.transform = 'translate(-50%,-50%) translate(' + (k * dx).toFixed(1) + 'px,' + (k * dy + bob).toFixed(1) + 'px) scale(' + Z.toFixed(4) + ')';
-      var mo = clamp((s - 0.36) / 0.4, 0, 1);
+      var mo = ss((s - 0.3) / 0.75);
       macro.style.opacity = mo.toFixed(3);
       macro.style.visibility = mo <= 0 ? 'hidden' : 'visible';
       macro.style.transform = 'translate(-50%,-50%) scale(' + s.toFixed(4) + ')';
@@ -315,11 +317,9 @@
   })();
 
   /* ───────── nav: fondo al bajar ───────── */
-  var lastY = 0, ringScroll = 0;
   function onScroll() {
     var y = W.scrollY || W.pageYOffset;
     if (nav) nav.classList.toggle('scrolled', y > 30);
-    ringScroll += y - lastY; lastY = y;
     $$('[data-par]').forEach(function (el) {
       var r = el.getBoundingClientRect();
       if (r.bottom < -200 || r.top > W.innerHeight + 200) return;
@@ -398,71 +398,6 @@
     });
     p.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target === p) p.click(); });
   });
-
-  /* ───────── galería: anillo 3D ───────── */
-  var scene = $('#ring-scene'), ring = $('#ring');
-  if (scene && ring) (function () {
-    var ids = CORO.anillo, n = ids.length, step = 360 / n, items = [], R = 0, rot = 0, target = 0, drag = null, vis = false, run = false, hover = false;
-    ids.forEach(function (id, i) {
-      var ph = CORO.fotos[id], el = D.createElement('div');
-      el.className = 'ring-item'; el.dataset.i = id;
-      el.innerHTML = '<img src="img/casa/' + ph.f + '-900.jpg" alt="' + ph.es + '" loading="lazy" decoding="async" draggable="false">';
-      ring.appendChild(el); items.push(el);
-    });
-    function layout() {
-      var w = clamp(scene.clientWidth * 0.21, 160, 290);
-      R = (w / 2) / Math.tan(Math.PI / n) + w * 0.09;
-      ring.style.setProperty('--w', w.toFixed(0) + 'px');
-      items.forEach(function (el, i) { el.style.transform = 'rotateY(' + (i * step) + 'deg) translateZ(' + R.toFixed(0) + 'px)'; });
-      paint();
-    }
-    function paint() {
-      ring.style.transform = 'translateZ(' + (-R).toFixed(0) + 'px) rotateX(-5deg) rotateY(' + rot.toFixed(3) + 'deg)';
-      for (var i = 0; i < n; i++) {
-        var a = ((i * step + rot) % 360 + 540) % 360 - 180, ab = Math.abs(a);
-        items[i].style.setProperty('--dim', Math.min(0.6, ab / 130).toFixed(3));
-        items[i].style.pointerEvents = ab < 62 ? 'auto' : 'none';
-      }
-    }
-    function loop() {
-      if (!vis) { run = false; return; }
-      if (!drag && !hover && !REDUCED && (!lb || lb.hidden)) target -= 0.045;
-      if (ringScroll) { target -= clamp(ringScroll, -80, 80) * 0.035; ringScroll = 0; }
-      var d = target - rot;
-      if (Math.abs(d) > 0.002) { rot += d * 0.085; paint(); }
-      requestAnimationFrame(loop);
-    }
-    scene.addEventListener('pointerdown', function (e) {
-      drag = { x: e.clientX, y: e.clientY, t: target, moved: 0, lx: e.clientX, v: 0 };
-      scene.classList.add('drag');
-    });
-    W.addEventListener('pointermove', function (e) {
-      if (!drag) return;
-      var dx = e.clientX - drag.x;
-      drag.moved = Math.max(drag.moved, Math.abs(dx));
-      drag.v = e.clientX - drag.lx; drag.lx = e.clientX;
-      target = drag.t + dx * 0.2;
-    });
-    function up(e) {
-      if (!drag) return;
-      var d = drag; drag = null; scene.classList.remove('drag');
-      if (d.moved < 7 && e.type === 'pointerup') {
-        var el = D.elementFromPoint(e.clientX, e.clientY), it = el && el.closest('.ring-item');
-        if (it) lbOpen(ALL, +it.dataset.i);
-        return;
-      }
-      target += d.v * 2.4;
-      target = Math.round(target / step) * step;
-    }
-    W.addEventListener('pointerup', up); W.addEventListener('pointercancel', up);
-    scene.addEventListener('pointerenter', function (e) { hover = e.pointerType === 'mouse'; });
-    scene.addEventListener('pointerleave', function () { hover = false; });
-    $('#ring-prev').addEventListener('click', function () { target = Math.round(target / step) * step + step; });
-    $('#ring-next').addEventListener('click', function () { target = Math.round(target / step) * step - step; });
-    W.addEventListener('resize', layout);
-    new IntersectionObserver(function (es) { vis = es[0].isIntersecting; ringScroll = 0; if (vis && !run) { run = true; requestAnimationFrame(loop); } }, { threshold: 0 }).observe(scene);
-    layout();
-  })();
 
   /* ───────── página de galería ───────── */
   var grid = $('#gal-grid');

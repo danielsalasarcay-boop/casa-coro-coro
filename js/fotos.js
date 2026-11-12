@@ -28,7 +28,5 @@ window.CORO = {
     { f: 'cocina-barra',    w: 768, set: 'cocina',  es: 'Cocina y barra',                    en: 'Kitchen and bar' },
     { f: 'sala-tv',         w: 960, set: 'tv',      es: 'Sala de TV',                        en: 'TV lounge' },
     { f: 'terraza-noche',   w: 960, set: 'terraza', es: 'La terraza de noche',               en: 'The terrace at night' }
-  ],
-  /* fotos del anillo 3D de la portada (índices de la lista de arriba) */
-  anillo: [0, 1, 2, 3, 6, 8, 9, 10, 11, 13, 14, 17, 18, 19]
+  ]
 };

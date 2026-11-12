@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/casa/portada.jpg" fetchpriority="high">
-<link rel="stylesheet" href="css/styles.css?v=1">
+<link rel="stylesheet" href="css/styles.css?v=2">
 
 <script type="application/ld+json">
 {
@@ -83,7 +83,7 @@
   <nav class="nav-links" aria-label="Navegación principal">
     <a href="#sobre" data-es="La Casa" data-en="The House">La Casa</a>
     <a href="#espacios" data-es="Espacios" data-en="Spaces">Espacios</a>
-    <a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
+    <a href="galeria.html" data-es="Galería" data-en="Gallery">Galería</a>
     <a href="#comodidades" data-es="Comodidades" data-en="Amenities">Comodidades</a>
     <a href="#ubicacion" data-es="Ubicación" data-en="Location">Ubicación</a>
   </nav>
@@ -101,7 +101,7 @@
 <div id="mmenu" class="mmenu" aria-hidden="true">
   <a href="#sobre" data-es="La Casa" data-en="The House">La Casa</a>
   <a href="#espacios" data-es="Espacios" data-en="Spaces">Espacios</a>
-  <a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
+  <a href="galeria.html" data-es="Galería" data-en="Gallery">Galería</a>
   <a href="#comodidades" data-es="Comodidades" data-en="Amenities">Comodidades</a>
   <a href="#ubicacion" data-es="Ubicación" data-en="Location">Ubicación</a>
   <a class="btn btn-wa" data-wa target="_blank" rel="noopener noreferrer"><svg width="18" height="18"><use href="#i-wa"/></svg><span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
@@ -197,7 +197,7 @@
 <section id="pez" class="eye-pin" aria-label="El pez que da nombre a la casa">
   <div class="eye-stage">
     <div class="eye-fish" aria-hidden="true">
-      <img src="img/pez/coro-1600.jpg" srcset="img/pez/coro-1600.jpg 1600w, img/pez/coro-3200.jpg 3200w" sizes="(max-width: 900px) 240vw, 140vw" alt="" decoding="async" loading="lazy">
+      <img src="img/pez/coro-blanco-1600.webp" srcset="img/pez/coro-blanco-1600.webp 1600w, img/pez/coro-blanco-3200.webp 3200w" sizes="(max-width: 900px) 240vw, 140vw" alt="" decoding="async" loading="lazy">
     </div>
     <div class="eye-macro" aria-hidden="true">
       <img src="img/pez/ojo-900.jpg" srcset="img/pez/ojo-900.jpg 900w, img/pez/ojo-1800.jpg 1800w" sizes="100vw" alt="" decoding="async" loading="lazy">
@@ -314,25 +314,6 @@
   </div>
 </section>
 
-<!-- ═════════ GALERÍA 3D ═════════ -->
-<section id="galeria" class="sec sec-ink ring-sec">
-  <div class="wrap sec-hd sec-hd-c">
-    <p class="s-label rv" data-es="Galería" data-en="Gallery">Galería</p>
-    <h2 class="s-title rv" data-html data-es="Dale una <em>vuelta</em> a la casa" data-en="Take a <em>spin</em> around the house">Dale una <em>vuelta</em> a la casa</h2>
-    <p class="s-sub rv" data-es="Arrastra para girar. Toca una foto para verla en grande." data-en="Drag to spin. Tap a photo to see it larger.">Arrastra para girar. Toca una foto para verla en grande.</p>
-  </div>
-  <div class="ring-scene" id="ring-scene" aria-label="Carrusel de fotos">
-    <div class="ring" id="ring"></div>
-  </div>
-  <div class="ring-foot">
-    <div class="ring-ctrl">
-      <button id="ring-prev" aria-label="Anterior">←</button>
-      <button id="ring-next" aria-label="Siguiente">→</button>
-    </div>
-    <a href="galeria.html" class="btn btn-sand"><span data-es="Ver la galería completa" data-en="See the full gallery">Ver la galería completa</span><span class="arr" aria-hidden="true">→</span></a>
-  </div>
-</section>
-
 <!-- ═════════ COMODIDADES ═════════ -->
 <section id="comodidades" class="sec sec-mint">
   <div class="wrap">
@@ -370,23 +351,17 @@
   </div>
 </section>
 
-<!-- ═════════ UBICACIÓN ═════════ -->
-<section id="ubicacion" class="sec">
-  <div class="wrap loc">
-    <div class="loc-text">
-      <p class="s-label rv" data-es="Ubicación" data-en="Location">Ubicación</p>
-      <h2 class="s-title rv" data-html data-es="Dónde <em>estamos</em>" data-en="Where <em>we are</em>">Dónde <em>estamos</em></h2>
-      <p class="body rv" data-es="En Gran Roque, la isla principal del Parque Nacional Archipiélago Los Roques, en el Caribe venezolano. Desde aquí salen las lanchas hacia los cayos." data-en="In Gran Roque, the main island of the Archipiélago Los Roques National Park, in the Venezuelan Caribbean. Boats to the cays leave from here.">En Gran Roque, la isla principal del Parque Nacional Archipiélago Los Roques, en el Caribe venezolano. Desde aquí salen las lanchas hacia los cayos.</p>
-      <ul class="loc-list rv">
-        <li><svg><use href="#i-pin"/></svg><span>Gran Roque, Los Roques, Venezuela</span></li>
-        <li><svg><use href="#i-plane"/></svg><span data-es="Se llega en avioneta desde Caracas (Maiquetía)" data-en="Reached by small plane from Caracas (Maiquetía)">Se llega en avioneta desde Caracas (Maiquetía)</span></li>
-      </ul>
-      <a class="btn btn-ink rv" href="https://maps.app.goo.gl/eSvo7J86vBRAjHx67" target="_blank" rel="noopener noreferrer"><svg width="18" height="18"><use href="#i-pin"/></svg><span data-es="Abrir en Google Maps" data-en="Open in Google Maps">Abrir en Google Maps</span></a>
+<!-- ═════════ UBICACIÓN (misma estructura y medidas que Casa Panza) ═════════ -->
+<section id="ubicacion" class="mapa">
+  <div class="mapa-wrap">
+    <div class="mapa-hd rv">
+      <p class="mapa-label" data-es="Ubicación" data-en="Location">Ubicación</p>
+      <div class="mapa-divider" aria-hidden="true"><svg viewBox="-126 -92 252 146"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg></div>
+      <h2 class="mapa-title" data-es="Dónde estamos" data-en="Where we are">Dónde estamos</h2>
     </div>
-    <div class="map-frame rv-img">
-      <iframe src="https://maps.google.com/maps?q=11.9457835,-66.6753867&z=18&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Casa Coro Coro — Gran Roque, Los Roques, Venezuela"></iframe>
-      <span class="map-tag"><svg viewBox="-126 -92 252 146" width="30" aria-hidden="true"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg>Casa Coro Coro</span>
-    </div>
+  </div>
+  <div class="mapa-frame">
+    <iframe src="https://maps.google.com/maps?q=11.9457835,-66.6753867&z=18&output=embed" width="100%" height="460" style="border:0;display:block;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Casa Coro Coro — Gran Roque, Los Roques, Venezuela"></iframe>
   </div>
 </section>
 
@@ -443,7 +418,7 @@
 
 <div class="cursor" aria-hidden="true"></div>
 
-<script src="js/fotos.js?v=1"></script>
-<script src="js/main.js?v=1"></script>
+<script src="js/fotos.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
