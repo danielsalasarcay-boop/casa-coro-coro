@@ -34,27 +34,69 @@
   /* ───────── loader ───────── */
   var loader = $('#loader'), t0 = Date.now();
   function ready() {
-    var wait = loader ? Math.max(0, (REDUCED ? 0 : 1900) - (Date.now() - t0)) : 0;
+    var wait = loader ? Math.max(0, (REDUCED ? 0 : 2500) - (Date.now() - t0)) : 0;
     setTimeout(function () {
       if (loader) loader.classList.add('done');
       D.body.classList.add('loaded');
     }, wait);
   }
-  if (D.readyState === 'complete') ready(); else { W.addEventListener('load', ready); setTimeout(ready, 3200); }
+  if (D.readyState === 'complete') ready(); else { W.addEventListener('load', ready); setTimeout(ready, 3800); }
 
-  /* ───────── nav ───────── */
-  var nav = $('#nav'), burger = $('#burger'), mmenu = $('#mmenu');
+  /* ───────── header e índice (como UNIMET Derecho) ───────── */
+  var nav = $('#nav'), idxBtn = $('.header__index'), idx = $('#indice');
   function menu(open) {
-    if (!mmenu) return;
-    mmenu.classList.toggle('open', open);
-    mmenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (!idx) return;
+    D.body.classList.toggle('is-menu', open);
+    idx.setAttribute('aria-hidden', open ? 'false' : 'true');
+    idxBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     D.body.style.overflow = open ? 'hidden' : '';
+    if (open) nav.classList.remove('away');
   }
-  if (burger) {
-    burger.addEventListener('click', function () { menu(!mmenu.classList.contains('open')); });
-    mmenu.addEventListener('click', function (e) { if (e.target.closest('a')) menu(false); });
+  if (idxBtn && idx) {
+    idxBtn.addEventListener('click', function () { menu(!D.body.classList.contains('is-menu')); });
+    idx.addEventListener('click', function (e) { if (e.target.closest('a:not([data-wa])')) menu(false); });
+    D.addEventListener('keydown', function (e) { if (e.key === 'Escape' && D.body.classList.contains('is-menu')) menu(false); });
   }
+  /* píldora que se desliza: sigue al cursor y, sin cursor, marca la sección visible */
+  (function () {
+    var bar = $('.header__nav');
+    if (!bar) return;
+    var links = $$('a', bar), pill = D.createElement('span'), hover = null;
+    var active = links.filter(function (a) { return a.hasAttribute('aria-current'); })[0] || null;
+    pill.className = 'nav__pill'; pill.setAttribute('aria-hidden', 'true'); bar.insertBefore(pill, bar.firstChild);
+    function place() {
+      var a = hover || active;
+      links.forEach(function (l) { l.classList.toggle('is-pill', l === a); });
+      if (!a) { pill.style.opacity = 0; return; }
+      var first = pill.style.opacity !== '1';
+      if (first) pill.style.transition = 'none';
+      pill.style.width = a.offsetWidth + 'px'; pill.style.height = a.offsetHeight + 'px';
+      pill.style.transform = 'translate(' + a.offsetLeft + 'px,' + a.offsetTop + 'px)';
+      pill.classList.toggle('is-gold', links.indexOf(a) % 2 === 1);
+      if (first) { void pill.offsetWidth; pill.style.transition = ''; }
+      pill.style.opacity = 1;
+    }
+    links.forEach(function (a) {
+      a.addEventListener('pointerenter', function () { hover = a; place(); });
+      a.addEventListener('focus', function () { hover = a; place(); });
+      a.addEventListener('blur', function () { hover = null; place(); });
+    });
+    bar.addEventListener('pointerleave', function () { hover = null; place(); });
+    var bySec = links.map(function (a) { var h = a.getAttribute('href'); return [a, h.charAt(0) === '#' ? $(h) : null]; }).filter(function (x) { return x[1]; });
+    if (bySec.length && 'IntersectionObserver' in W) {
+      var io2 = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          var hit = bySec.filter(function (x) { return x[1] === e.target; })[0];
+          if (e.isIntersecting) active = hit[0]; else if (active === hit[0]) active = null;
+        });
+        place();
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      bySec.forEach(function (x) { io2.observe(x[1]); });
+    }
+    W.addEventListener('resize', place);
+    D.addEventListener('langchange', function () { setTimeout(place, 30); });
+    if (D.fonts && D.fonts.ready) D.fonts.ready.then(place);
+  })();
 
   /* ───────── revelados ───────── */
   var rvEls = $$('.rv, .rv-img');
@@ -128,7 +170,7 @@
       var r = host.getBoundingClientRect();
       w = r.width; h = r.height; dpr = Math.min(W.devicePixelRatio || 1, 2);
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-      var n = Math.round(clamp(w * h / 26000, 16, opt.max || 52));
+      var n = Math.round(clamp(w * h / 26000, opt.min || 16, opt.max || 52));
       while (fish.length < n) fish.push(make());
       fish.length = n;
       fish.sort(function (a, b) { return b.z - a.z; });
@@ -230,6 +272,8 @@
     new IntersectionObserver(function (es) { visible = es[0].isIntersecting; start(); }, { threshold: 0 }).observe(host);
     size();
   }
+  var sh = $('#shoal-hero');
+  if (sh && sh.getContext) Shoal(sh, { rgb: '15,61,62', gold: '201,151,63', eye: '246,240,228', min: 7, max: 11, alpha: 0.75 });
   var sf = $('#shoal-foot');
   if (sf && sf.getContext) Shoal(sf, { rgb: '213,231,216', gold: '227,183,104', eye: '15,61,62', max: 34, alpha: 0.5 });
 
@@ -388,9 +432,15 @@
   })();
 
   /* ───────── nav: fondo al bajar ───────── */
+  var navY = 0;
   function onScroll() {
     var y = W.scrollY || W.pageYOffset;
-    if (nav) nav.classList.toggle('scrolled', y > 30);
+    if (nav) {
+      nav.classList.toggle('scrolled', y > 30);
+      /* se esconde al bajar y vuelve al subir */
+      if (!D.body.classList.contains('is-menu')) nav.classList.toggle('away', y > navY && y > W.innerHeight * 0.4 && y > 80);
+      navY = y;
+    }
     $$('[data-par]').forEach(function (el) {
       var r = el.getBoundingClientRect();
       if (r.bottom < -200 || r.top > W.innerHeight + 200) return;

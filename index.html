@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/casa/portada.jpg" imagesrcset="img/casa/portada-900.jpg 675w, img/casa/portada.jpg 960w" imagesizes="(max-width: 900px) 100vw, 54vw" fetchpriority="high">
-<link rel="stylesheet" href="css/styles.css?v=10">
+<link rel="stylesheet" href="css/styles.css?v=12">
 
 <script type="application/ld+json">
 {
@@ -66,47 +66,64 @@
   </defs>
 </svg>
 
-<!-- LOADER -->
+<!-- LOADER: el corocoro salta y salpica -->
 <div id="loader" aria-hidden="true">
   <div class="loader-in">
-    <svg class="loader-fish" viewBox="-126 -92 252 146"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg>
+    <svg class="ld" viewBox="0 0 400 230">
+      <defs><clipPath id="ld-sky"><rect x="0" y="-60" width="400" height="232"/></clipPath></defs>
+      <g clip-path="url(#ld-sky)"><g class="ld-fish"><use href="#i-fish" x="-63" y="-46" width="126" height="73"/></g></g>
+      <path class="ld-water" d="M8,172 Q20,168 32,172 Q44,176 56,172 Q68,168 80,172 Q92,176 104,172 Q116,168 128,172 Q140,176 152,172 Q164,168 176,172 Q188,176 200,172 Q212,168 224,172 Q236,176 248,172 Q260,168 272,172 Q284,176 296,172 Q308,168 320,172 Q332,176 344,172 Q356,168 368,172 Q380,176 392,172" pathLength="1"/>
+      <path class="ld-water ld-water2" d="M60,184 Q75,181 90,184 Q105,187 120,184 Q135,181 150,184 Q165,187 180,184 Q195,181 210,184 Q225,187 240,184 Q255,181 270,184 Q285,187 300,184 Q315,181 330,184 Q335,187 340,184" pathLength="1"/>
+      <circle class="ld-drop" cx="118" cy="172" r="3.3" fill="var(--gold)" style="--dx:-61;--dy:-41;--t:0.70s"/><circle class="ld-drop" cx="118" cy="172" r="3.7" fill="#4FA9B8" style="--dx:-40;--dy:-37;--t:0.72s"/><circle class="ld-drop" cx="118" cy="172" r="4.1" fill="#4FA9B8" style="--dx:-43;--dy:-35;--t:0.71s"/><circle class="ld-drop" cx="118" cy="172" r="3.8" fill="#86C7D2" style="--dx:-66;--dy:-80;--t:0.70s"/><circle class="ld-drop" cx="118" cy="172" r="2.3" fill="var(--gold)" style="--dx:-23;--dy:-47;--t:0.67s"/><circle class="ld-drop" cx="118" cy="172" r="3.3" fill="#4FA9B8" style="--dx:-17;--dy:-50;--t:0.72s"/><circle class="ld-drop" cx="118" cy="172" r="3.8" fill="#86C7D2" style="--dx:-17;--dy:-84;--t:0.69s"/><circle class="ld-drop" cx="118" cy="172" r="4.2" fill="#4FA9B8" style="--dx:-11;--dy:-113;--t:0.71s"/><circle class="ld-drop" cx="118" cy="172" r="2.4" fill="var(--gold)" style="--dx:2;--dy:-61;--t:0.71s"/><circle class="ld-drop" cx="118" cy="172" r="4.5" fill="#86C7D2" style="--dx:19;--dy:-92;--t:0.72s"/><circle class="ld-drop" cx="118" cy="172" r="3.3" fill="#4FA9B8" style="--dx:15;--dy:-70;--t:0.73s"/><circle class="ld-drop" cx="118" cy="172" r="4.1" fill="#4FA9B8" style="--dx:22;--dy:-53;--t:0.68s"/><circle class="ld-drop" cx="118" cy="172" r="4.0" fill="var(--gold)" style="--dx:34;--dy:-67;--t:0.67s"/><circle class="ld-drop" cx="118" cy="172" r="4.1" fill="#4FA9B8" style="--dx:32;--dy:-34;--t:0.67s"/><circle class="ld-drop" cx="118" cy="172" r="4.0" fill="#4FA9B8" style="--dx:52;--dy:-35;--t:0.67s"/><circle class="ld-drop" cx="118" cy="172" r="2.7" fill="#86C7D2" style="--dx:39;--dy:-26;--t:0.68s"/><ellipse class="ld-rip" cx="118" cy="172" rx="38" ry="5" style="--t:0.66s"/><ellipse class="ld-rip ld-rip2" cx="118" cy="172" rx="38" ry="5" style="--t:0.86s"/>
+      <circle class="ld-drop" cx="282" cy="172" r="4.3" fill="var(--gold)" style="--dx:-71;--dy:-39;--t:1.39s"/><circle class="ld-drop" cx="282" cy="172" r="2.4" fill="#4FA9B8" style="--dx:-72;--dy:-50;--t:1.45s"/><circle class="ld-drop" cx="282" cy="172" r="3.0" fill="#4FA9B8" style="--dx:-41;--dy:-48;--t:1.40s"/><circle class="ld-drop" cx="282" cy="172" r="2.8" fill="#86C7D2" style="--dx:-30;--dy:-45;--t:1.42s"/><circle class="ld-drop" cx="282" cy="172" r="3.4" fill="var(--gold)" style="--dx:-35;--dy:-74;--t:1.42s"/><circle class="ld-drop" cx="282" cy="172" r="4.4" fill="#4FA9B8" style="--dx:-16;--dy:-53;--t:1.44s"/><circle class="ld-drop" cx="282" cy="172" r="4.5" fill="#86C7D2" style="--dx:-14;--dy:-66;--t:1.39s"/><circle class="ld-drop" cx="282" cy="172" r="3.2" fill="#4FA9B8" style="--dx:0;--dy:-100;--t:1.39s"/><circle class="ld-drop" cx="282" cy="172" r="3.9" fill="var(--gold)" style="--dx:-0;--dy:-97;--t:1.40s"/><circle class="ld-drop" cx="282" cy="172" r="2.6" fill="#86C7D2" style="--dx:21;--dy:-76;--t:1.43s"/><circle class="ld-drop" cx="282" cy="172" r="4.2" fill="#4FA9B8" style="--dx:16;--dy:-64;--t:1.42s"/><circle class="ld-drop" cx="282" cy="172" r="2.2" fill="#4FA9B8" style="--dx:44;--dy:-80;--t:1.40s"/><circle class="ld-drop" cx="282" cy="172" r="3.1" fill="var(--gold)" style="--dx:27;--dy:-39;--t:1.42s"/><circle class="ld-drop" cx="282" cy="172" r="4.6" fill="#4FA9B8" style="--dx:41;--dy:-59;--t:1.43s"/><circle class="ld-drop" cx="282" cy="172" r="2.3" fill="#4FA9B8" style="--dx:59;--dy:-35;--t:1.38s"/><circle class="ld-drop" cx="282" cy="172" r="2.3" fill="#86C7D2" style="--dx:69;--dy:-38;--t:1.42s"/><ellipse class="ld-rip" cx="282" cy="172" rx="38" ry="5" style="--t:1.38s"/><ellipse class="ld-rip ld-rip2" cx="282" cy="172" rx="38" ry="5" style="--t:1.58s"/>
+    </svg>
     <img src="img/logo-texto.svg" alt="" class="loader-word" width="320" height="38">
+    <p class="loader-place">Gran Roque · Los Roques</p>
   </div>
 </div>
 
-<!-- NAV -->
-<header id="nav">
-  <a href="#inicio" class="nav-logo" aria-label="Casa Coro Coro — inicio">
-    <img src="img/logo-horizontal.svg" alt="Casa Coro Coro" width="212" height="48" class="logo-dark">
-    <img src="img/logo-horizontal-claro.svg" alt="" width="212" height="48" class="logo-light" aria-hidden="true">
+<!-- HEADER (como UNIMET Derecho) -->
+<header id="nav" class="header">
+  <a href="#inicio" class="brand" aria-label="Casa Coro Coro, ir al inicio">
+    <span class="brand__logo"><svg viewBox="-126 -92 252 146"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg></span>
+    <span class="brand__word"><b>Casa Coro Coro</b><span>Gran Roque · Los Roques</span></span>
   </a>
-  <nav class="nav-links" aria-label="Navegación principal">
-    <a href="#sobre" data-es="La Casa" data-en="The House">La Casa</a>
+  <nav class="header__nav" aria-label="Principal">
+    <a href="#sobre" data-es="La casa" data-en="The house">La casa</a>
     <a href="#espacios" data-es="Espacios" data-en="Spaces">Espacios</a>
     <a href="galeria.html" data-es="Galería" data-en="Gallery">Galería</a>
     <a href="#ubicacion" data-es="Ubicación" data-en="Location">Ubicación</a>
-    <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+    <a href="#contacto" data-es="Reservas" data-en="Bookings">Reservas</a>
   </nav>
-  <div class="nav-right">
-    <div class="lang" role="group" aria-label="Idioma / Language">
-      <button data-lang="es" class="active">ES</button><span aria-hidden="true">/</span><button data-lang="en">EN</button>
-    </div>
-    <a class="btn btn-wa btn-sm" data-wa target="_blank" rel="noopener noreferrer">
-      <svg width="16" height="16"><use href="#i-wa"/></svg><span data-es="Reservar" data-en="Book">Reservar</span>
-    </a>
-    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mmenu"><span></span><span></span></button>
+  <div class="lang header__lang" role="group" aria-label="Idioma / Language">
+    <button data-lang="es" class="active">ES</button><span aria-hidden="true">/</span><button data-lang="en">EN</button>
   </div>
+  <a class="header__cta" data-wa target="_blank" rel="noopener noreferrer"><svg width="15" height="15"><use href="#i-wa"/></svg><span data-es="Reservar" data-en="Book">Reservar</span></a>
+  <button class="header__index" aria-expanded="false" aria-controls="indice">
+    <span class="label" data-es="Índice" data-en="Index">Índice</span><i></i><i></i>
+  </button>
 </header>
 
-<div id="mmenu" class="mmenu" aria-hidden="true">
-  <a href="#sobre" data-es="La Casa" data-en="The House">La Casa</a>
-  <a href="#espacios" data-es="Espacios" data-en="Spaces">Espacios</a>
-  <a href="galeria.html" data-es="Galería" data-en="Gallery">Galería</a>
-  <a href="#ubicacion" data-es="Ubicación" data-en="Location">Ubicación</a>
-  <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
-  <a class="btn btn-wa" data-wa target="_blank" rel="noopener noreferrer"><svg width="18" height="18"><use href="#i-wa"/></svg><span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
-  <div class="lang" role="group" aria-label="Idioma / Language">
-    <button data-lang="es" class="active">ES</button><span aria-hidden="true">/</span><button data-lang="en">EN</button>
+<!-- ÍNDICE (menú) -->
+<div class="indice" id="indice" aria-hidden="true">
+  <div class="indice__inner">
+    <p class="indice__kicker" data-es="Índice" data-en="Index">Índice</p>
+    <ol class="indice__list">
+      <li><a href="#inicio"><span class="p">I</span><span class="t" data-es="Portada" data-en="Cover">Portada</span></a></li>
+      <li><a href="#sobre"><span class="p">II</span><span class="t" data-es="La casa" data-en="The house">La casa</span></a></li>
+      <li><a href="#pez"><span class="p">III</span><span class="t" data-es="El corocoro" data-en="The corocoro">El corocoro</span></a></li>
+      <li><a href="#espacios"><span class="p">IV</span><span class="t" data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
+      <li><a href="#comodidades"><span class="p">V</span><span class="t" data-es="Incluido en tu estadía" data-en="Included in your stay">Incluido en tu estadía</span></a></li>
+      <li><a href="#ubicacion"><span class="p">VI</span><span class="t" data-es="Ubicación" data-en="Location">Ubicación</span></a></li>
+      <li><a href="#contacto"><span class="p">VII</span><span class="t" data-es="Reservas" data-en="Bookings">Reservas</span></a></li>
+      <li><a href="galeria.html"><span class="p">VIII</span><span class="t" data-es="Galería completa" data-en="Full gallery">Galería completa</span></a></li>
+    </ol>
+    <div class="indice__foot">
+      <a class="btn btn-wa" data-wa target="_blank" rel="noopener noreferrer"><svg width="18" height="18"><use href="#i-wa"/></svg><span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button data-lang="es" class="active">ES</button><span aria-hidden="true">/</span><button data-lang="en">EN</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -115,6 +132,7 @@
 <!-- ═════════ HERO (portada tipo revista) ═════════ -->
 <section id="inicio" class="hero">
   <div class="hero-left">
+    <canvas class="shoal" id="shoal-hero" aria-hidden="true"></canvas>
     <div class="hero-copy">
       <p class="kicker hero-in" style="--d:0" data-es="Gran Roque · Los Roques" data-en="Gran Roque · Los Roques">Gran Roque · Los Roques</p>
       <h1 class="mast hero-in" style="--d:1"><span class="sr">Casa Coro Coro</span><svg class="mast-svg" viewBox="0 0 600 392" aria-hidden="true"><g class="mast-fish" transform="translate(300,112)"><g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path class="d" pathLength="1" d="M118,2C100,-36 46,-58 -8,-50C-38,-45 -58,-24 -72,-9C-88,-20 -102,-36 -118,-46Q-100,0 -118,46C-102,36 -88,20 -72,9C-56,26 -30,44 2,46C50,48 100,34 118,2Z"/><path class="d d2" pathLength="1" d="M73.8,-47.9L70.7,-69.7"/><path class="d d2" pathLength="1" d="M60.2,-53.3L53.2,-81.5"/><path class="d d2" pathLength="1" d="M45.7,-57.3L36.4,-82.7"/><path class="d d2" pathLength="1" d="M30.4,-59.8L20.3,-80.4"/><path class="d d2" pathLength="1" d="M14.6,-60.6L5.0,-75.9"/><path class="d d2" pathLength="1" d="M-1.5,-59.8L-9.5,-70.1"/><circle class="d" pathLength="1" cx="82" cy="-9" r="9.5"/></g><circle class="f" cx="84" cy="-9" r="3.6" fill="currentColor"/><g class="dots" fill="var(--gold)"><circle class="f" style="--i:0" cx="43.0" cy="-21.3" r="3.25"/><circle class="f" style="--i:1" cx="24.0" cy="-23.9" r="3.00"/><circle class="f" style="--i:2" cx="5.0" cy="-25.0" r="2.75"/><circle class="f" style="--i:3" cx="-14.0" cy="-24.3" r="2.50"/><circle class="f" style="--i:4" cx="-33.0" cy="-22.0" r="2.25"/><circle class="f" style="--i:5" cx="-52.0" cy="-18.3" r="2.00"/><circle class="f" style="--i:6" cx="51.7" cy="-5.5" r="3.29"/><circle class="f" style="--i:7" cx="33.4" cy="-6.4" r="3.07"/><circle class="f" style="--i:8" cx="15.1" cy="-6.9" r="2.86"/><circle class="f" style="--i:9" cx="-3.1" cy="-7.0" r="2.64"/><circle class="f" style="--i:10" cx="-21.4" cy="-6.6" r="2.43"/><circle class="f" style="--i:11" cx="-39.7" cy="-5.8" r="2.21"/><circle class="f" style="--i:12" cx="-58.0" cy="-4.8" r="2.00"/><circle class="f" style="--i:13" cx="43.3" cy="9.3" r="3.25"/><circle class="f" style="--i:14" cx="24.7" cy="10.5" r="3.00"/><circle class="f" style="--i:15" cx="6.0" cy="11.0" r="2.75"/><circle class="f" style="--i:16" cx="-12.7" cy="10.7" r="2.50"/><circle class="f" style="--i:17" cx="-31.3" cy="9.8" r="2.25"/><circle class="f" style="--i:18" cx="-50.0" cy="8.3" r="2.00"/><circle class="f" style="--i:19" cx="40.0" cy="23.5" r="3.50"/><circle class="f" style="--i:20" cx="22.5" cy="26.0" r="3.12"/><circle class="f" style="--i:21" cx="5.0" cy="27.0" r="2.75"/><circle class="f" style="--i:22" cx="-12.5" cy="26.4" r="2.38"/><circle class="f" style="--i:23" cx="-30.0" cy="24.2" r="2.00"/></g></g><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"><path class="d dw" pathLength="1" stroke-width="0.1467" transform="translate(262.50,208.00) scale(15)" d="M.883,.179A.5,.5 0 1 0 .883,.821"/><path class="d dw" pathLength="1" stroke-width="0.1467" transform="translate(285.30,208.00) scale(15)" d="M0,1L.42,0L.84,1M.155,.66L.685,.66"/><path class="d dw" pathLength="1" stroke-width="0.1467" transform="translate(307.20,208.00) scale(15)" d="M.497,.125A.25,.25 0 1 0 .28,.5A.25,.25 0 1 1 .063,.875"/><path class="d dw" pathLength="1" stroke-width="0.1467" transform="translate(324.90,208.00) scale(15)" d="M0,1L.42,0L.84,1M.155,.66L.685,.66"/></g><g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"><path class="d dw" pathLength="1" stroke-width="0.0926" transform="translate(56.46,246.00) scale(54)" d="M.883,.179A.5,.5 0 1 0 .883,.821"/><path class="d dw" pathLength="1" stroke-width="0.0926" transform="translate(115.86,246.00) scale(54)" d="M1,.5A.5,.5 0 1 1 0,.5A.5,.5 0 1 1 1,.5Z"/><path class="d dw" pathLength="1" stroke-width="0.0926" transform="translate(180.66,246.00) scale(54)" d="M0,1L0,0L.3,0A.27,.27 0 0 1 .3,.54L0,.54M.3,.54L.6,1"/><path class="d dw" pathLength="1" stroke-width="0.0926" transform="translate(223.86,246.00) scale(54)" d="M1,.5A.5,.5 0 1 1 0,.5A.5,.5 0 1 1 1,.5Z"/><path class="d dw" pathLength="1" stroke-width="0.0926" transform="translate(322.14,246.00) scale(54)" d="M.883,.179A.5,.5 0 1 0 .883,.821"/><path class="d dw" pathLength="1" stroke-width="0.0926" transform="translate(381.54,246.00) scale(54)" d="M1,.5A.5,.5 0 1 1 0,.5A.5,.5 0 1 1 1,.5Z"/><path class="d dw" pathLength="1" stroke-width="0.0926" transform="translate(446.34,246.00) scale(54)" d="M0,1L0,0L.3,0A.27,.27 0 0 1 .3,.54L0,.54M.3,.54L.6,1"/><path class="d dw" pathLength="1" stroke-width="0.0926" transform="translate(489.54,246.00) scale(54)" d="M1,.5A.5,.5 0 1 1 0,.5A.5,.5 0 1 1 1,.5Z"/></g><g class="mast-rule" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" fill="none"><path class="d dw" pathLength="1" d="M196,346H118"/><path class="d dw" pathLength="1" d="M404,346H482"/></g><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(220.92,340.00) scale(12)" d="M0,0L0,1L.5,1"/><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(235.32,340.00) scale(12)" d="M1,.5A.5,.5 0 1 1 0,.5A.5,.5 0 1 1 1,.5Z"/><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(255.72,340.00) scale(12)" d="M.497,.125A.25,.25 0 1 0 .28,.5A.25,.25 0 1 1 .063,.875"/><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(284.28,340.00) scale(12)" d="M0,1L0,0L.3,0A.27,.27 0 0 1 .3,.54L0,.54M.3,.54L.6,1"/><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(299.88,340.00) scale(12)" d="M1,.5A.5,.5 0 1 1 0,.5A.5,.5 0 1 1 1,.5Z"/><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(320.28,340.00) scale(12)" d="M1,.5A.5,.5 0 1 1 0,.5A.5,.5 0 1 1 1,.5ZM.62,.68L.96,1.04"/><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(340.68,340.00) scale(12)" d="M0,0L0,.64A.36,.36 0 0 0 .72,.64L.72,0"/><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(357.72,340.00) scale(12)" d="M.52,0L0,0L0,1L.52,1M0,.5L.44,.5"/><path class="d dw" pathLength="1" stroke-width="0.1583" transform="translate(372.36,340.00) scale(12)" d="M.497,.125A.25,.25 0 1 0 .28,.5A.25,.25 0 1 1 .063,.875"/></g></svg></h1>
@@ -340,7 +358,7 @@
   <div class="lb-count" id="lb-count" aria-live="polite"></div>
 </div>
 
-<script src="js/fotos.js?v=10"></script>
-<script src="js/main.js?v=10"></script>
+<script src="js/fotos.js?v=12"></script>
+<script src="js/main.js?v=12"></script>
 </body>
 </html>
