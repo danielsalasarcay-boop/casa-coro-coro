@@ -512,10 +512,18 @@ html:not(.js) #loader { display: none; }
   .ld-fish { animation: none; transform: translate(200px, 92px); }
 }
 
-/* Ubicación: línea pequeña en mayúsculas sin cambiar el alto de la sección
-   (antes: etiqueta 10 + margen del título 15; ahora: etiqueta 5 + 2 + línea 12 + 6) */
-.mapa .mapa-title { margin-bottom: 0; }
-.mapa .mapa-label { margin-bottom: 5px; }
-.mapa .mapa-hd { margin-bottom: 6px; }
-.mapa-place { font-size: 9px; line-height: 12px; height: 12px; margin: 2px 0 6px; font-weight: 500; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-@media (max-width: 360px) { .mapa-place { letter-spacing: .22em; } }
+/* Ubicación: "Archipiélago Los Roques, Gran Roque" en la esquina superior derecha
+   (posición absoluta: la sección no cambia de alto). En teléfono, como etiqueta sobre el mapa. */
+.mapa { position: relative; }
+.mapa-place { position: absolute; top: 34px; right: max(56px, calc((100% - 1300px) / 2 + 56px)); display: flex; align-items: center; gap: 12px;
+  font-size: 9.5px; line-height: 1; font-weight: 500; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.mapa-place::before { content: ''; width: 26px; height: 1px; background: var(--gold); }
+@media (max-width: 1100px) { .mapa-place { right: 36px; } }
+@media (max-width: 900px) {
+  .mapa-place { top: auto; right: auto; left: 12px; bottom: calc(340px - 12px - 26px); z-index: 2; padding: 8px 12px; border-radius: 999px;
+    background: rgba(246, 240, 228, .94); box-shadow: 0 6px 16px -8px rgba(10, 43, 44, .4); font-size: 8.5px; letter-spacing: .24em; color: var(--ink); gap: 8px; pointer-events: none; }
+  .mapa-place::before { width: 14px; }
+}
+@media (min-width: 769px) and (max-width: 900px) { .mapa-place { bottom: calc(460px - 12px - 26px); } }
+@media (max-width: 480px) { .mapa-place { bottom: calc(260px - 12px - 26px); } }
+@media (max-width: 360px) { .mapa-place { letter-spacing: .16em; font-size: 8px; } }
