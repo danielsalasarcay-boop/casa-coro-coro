@@ -7,14 +7,24 @@
 <meta name="description" content="Fotos de Casa Coro Coro en Gran Roque, Los Roques: terrazas, jardín de arena, comedor, cocina y sala de TV.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#F6F0E4">
-<!-- Open Graph (PENDIENTE: al tener dominio, añadir canonical, og:url y og:image con URL absoluta) -->
+<!-- Vista previa al compartir (WhatsApp, redes) -->
+<link rel="canonical" href="https://casa-coro-coro.vercel.app/galeria.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Casa Coro Coro">
-<meta property="og:title" content="Casa Coro Coro — Casa privada en Los Roques">
-<meta property="og:description" content="Casa privada en Gran Roque. 5 habitaciones con baño privado, staff incluido. Reserva directa por WhatsApp.">
-<meta property="og:image" content="img/og-casa-coro-coro.jpg">
+<meta property="og:title" content="Galería — Casa Coro Coro, Los Roques">
+<meta property="og:description" content="Fotos de Casa Coro Coro en Gran Roque, Los Roques: terrazas, jardín de arena, comedor y más.">
+<meta property="og:url" content="https://casa-coro-coro.vercel.app/galeria.html">
+<meta property="og:image" content="https://casa-coro-coro.vercel.app/img/og-casa-coro-coro.jpg">
+<meta property="og:image:secure_url" content="https://casa-coro-coro.vercel.app/img/og-casa-coro-coro.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de Casa Coro Coro, Los Roques">
 <meta property="og:locale" content="es_VE">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Galería — Casa Coro Coro, Los Roques">
+<meta name="twitter:description" content="Fotos de Casa Coro Coro en Gran Roque, Los Roques: terrazas, jardín de arena, comedor y más.">
+<meta name="twitter:image" content="https://casa-coro-coro.vercel.app/img/og-casa-coro-coro.jpg">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -23,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=15">
+<link rel="stylesheet" href="css/styles.css?v=19">
 
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -52,7 +62,7 @@
   </defs>
 </svg>
 
-<!-- HEADER (como UNIMET Derecho) -->
+<!-- HEADER -->
 <header id="nav" class="header">
   <a href="index.html#inicio" class="brand" aria-label="Casa Coro Coro, ir al inicio">
     <span class="brand__logo"><svg viewBox="-126 -92 252 146"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg></span>
@@ -69,33 +79,7 @@
     <button data-lang="es" class="active">ES</button><span aria-hidden="true">/</span><button data-lang="en">EN</button>
   </div>
   <a class="header__cta" data-wa target="_blank" rel="noopener noreferrer"><svg width="15" height="15"><use href="#i-wa"/></svg><span data-es="Reservar" data-en="Book">Reservar</span></a>
-  <button class="header__index" aria-expanded="false" aria-controls="indice">
-    <span class="label" data-es="Índice" data-en="Index">Índice</span><i></i><i></i>
-  </button>
 </header>
-
-<!-- ÍNDICE (menú) -->
-<div class="indice" id="indice" aria-hidden="true">
-  <div class="indice__inner">
-    <p class="indice__kicker" data-es="Índice" data-en="Index">Índice</p>
-    <ol class="indice__list">
-      <li><a href="index.html#inicio"><span class="p">I</span><span class="t" data-es="Portada" data-en="Cover">Portada</span></a></li>
-      <li><a href="index.html#sobre"><span class="p">II</span><span class="t" data-es="La casa" data-en="The house">La casa</span></a></li>
-      <li><a href="index.html#pez"><span class="p">III</span><span class="t" data-es="El corocoro" data-en="The corocoro">El corocoro</span></a></li>
-      <li><a href="index.html#espacios"><span class="p">IV</span><span class="t" data-es="Espacios" data-en="Spaces">Espacios</span></a></li>
-      <li><a href="index.html#comodidades"><span class="p">V</span><span class="t" data-es="Incluido en tu estadía" data-en="Included in your stay">Incluido en tu estadía</span></a></li>
-      <li><a href="index.html#ubicacion"><span class="p">VI</span><span class="t" data-es="Ubicación" data-en="Location">Ubicación</span></a></li>
-      <li><a href="index.html#contacto"><span class="p">VII</span><span class="t" data-es="Reservas" data-en="Bookings">Reservas</span></a></li>
-      <li><a href="galeria.html" aria-current="page"><span class="p">VIII</span><span class="t" data-es="Galería completa" data-en="Full gallery">Galería completa</span></a></li>
-    </ol>
-    <div class="indice__foot">
-      <a class="btn btn-wa" data-wa target="_blank" rel="noopener noreferrer"><svg width="18" height="18"><use href="#i-wa"/></svg><span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
-      <div class="lang" role="group" aria-label="Idioma / Language">
-        <button data-lang="es" class="active">ES</button><span aria-hidden="true">/</span><button data-lang="en">EN</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <main class="gal-page">
   <div class="wrap">
@@ -141,7 +125,7 @@
   <div class="lb-count" id="lb-count" aria-live="polite"></div>
 </div>
 
-<script src="js/fotos.js?v=15"></script>
-<script src="js/main.js?v=15"></script>
+<script src="js/fotos.js?v=19"></script>
+<script src="js/main.js?v=19"></script>
 </body>
 </html>

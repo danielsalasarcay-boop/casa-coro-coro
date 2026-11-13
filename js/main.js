@@ -20,6 +20,7 @@
       if (el.hasAttribute('data-html')) el.innerHTML = v; else el.textContent = v;
     });
     $$('.lang button').forEach(function (b) { b.classList.toggle('active', b.dataset.lang === lang); });
+    $$('.lang').forEach(function (l) { l.classList.toggle('is-en', lang === 'en'); });
     var href = 'https://wa.me/' + CORO.wa + '?text=' + encodeURIComponent(CORO.waMsg[lang]);
     $$('[data-wa]').forEach(function (a) { a.href = href; });
     try { localStorage.setItem('lang', lang); } catch (e) {}
@@ -42,21 +43,8 @@
   }
   if (D.readyState === 'complete') ready(); else { W.addEventListener('load', ready); setTimeout(ready, 3800); }
 
-  /* ───────── header e índice (como UNIMET Derecho) ───────── */
-  var nav = $('#nav'), idxBtn = $('.header__index'), idx = $('#indice');
-  function menu(open) {
-    if (!idx) return;
-    D.body.classList.toggle('is-menu', open);
-    idx.setAttribute('aria-hidden', open ? 'false' : 'true');
-    idxBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    D.body.style.overflow = open ? 'hidden' : '';
-    if (open) nav.classList.remove('away');
-  }
-  if (idxBtn && idx) {
-    idxBtn.addEventListener('click', function () { menu(!D.body.classList.contains('is-menu')); });
-    idx.addEventListener('click', function (e) { if (e.target.closest('a:not([data-wa])')) menu(false); });
-    D.addEventListener('keydown', function (e) { if (e.key === 'Escape' && D.body.classList.contains('is-menu')) menu(false); });
-  }
+  /* ───────── header (como UNIMET Derecho) ───────── */
+  var nav = $('#nav');
   /* píldora que se desliza: sigue al cursor y, sin cursor, marca la sección visible */
   (function () {
     var bar = $('.header__nav');
@@ -438,7 +426,7 @@
     if (nav) {
       nav.classList.toggle('scrolled', y > 30);
       /* se esconde al bajar y vuelve al subir */
-      if (!D.body.classList.contains('is-menu')) nav.classList.toggle('away', y > navY && y > W.innerHeight * 0.4 && y > 80);
+      nav.classList.toggle('away', y > navY && y > W.innerHeight * 0.4 && y > 80);
       navY = y;
     }
     $$('[data-par]').forEach(function (el) {
