@@ -23,10 +23,10 @@ SITE = {
     "head": '<link rel="icon" type="image/svg+xml" href="favicon.svg">\n'
             '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
             '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-            '<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">',
+            '<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">',
     "style": {
         "bg": "#F6F0E4", "ink": "#0F3D3E", "muted": "#5E6F6B", "accent": "#A67A2C", "line": "#E0D6C3", "card": "#EDE4D3",
-        "display": "'Fraunces', Georgia, serif", "body": "'Outfit', system-ui, sans-serif",
+        "display": "'Bodoni Moda', Georgia, serif", "body": "'Jost', system-ui, sans-serif",
         "brand_size": "22px", "brand_track": "0.22em", "brand_case": "uppercase", "h_weight": "500",
     },
 }

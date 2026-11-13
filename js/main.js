@@ -230,9 +230,8 @@
     new IntersectionObserver(function (es) { visible = es[0].isIntersecting; start(); }, { threshold: 0 }).observe(host);
     size();
   }
-  var sh = $('#shoal-hero'), sc = $('#shoal-contact');
-  if (sh && sh.getContext) Shoal(sh, { rgb: '15,61,62', gold: '201,151,63', eye: '246,240,228', max: 54 });
-  if (sc && sc.getContext) Shoal(sc, { rgb: '213,231,216', gold: '227,183,104', eye: '15,61,62', max: 40, alpha: 0.55 });
+  var sf = $('#shoal-foot');
+  if (sf && sf.getContext) Shoal(sf, { rgb: '213,231,216', gold: '227,183,104', eye: '15,61,62', max: 34, alpha: 0.5 });
 
   /* ───────── el pez: zoom a través del ojo (dibujado en canvas) ─────────
      Todo el zoom se pinta en un canvas del tamaño de la pantalla, recortando la
@@ -348,6 +347,45 @@
     new IntersectionObserver(function (es) { vis = es[0].isIntersecting; if (vis && !run) { run = true; measure(); requestAnimationFrame(loop); } }, { threshold: 0 }).observe(pin);
   })();
   else if (pin) { var dd = $('.eye-dest', pin); if (dd) dd.classList.add('shown'); }
+
+  /* ───────── firma de la casa: el corocoro se dibuja con el scroll ─────────
+     Empieza cuando la sección asoma por abajo y termina al llegar al final de la página;
+     el trazo sigue al scroll con suavizado y se borra si se vuelve a subir. */
+  var firma = $('#firma');
+  if (firma) (function () {
+    var sec = firma.closest('section'), cur = 0, target = 0, running = false, vis = false;
+    var els = $$('[data-r]', firma).map(function (e) {
+      var r = e.getAttribute('data-r').split(',');
+      return { e: e, a: +r[0], b: +r[1], f: e.classList.contains('f') };
+    });
+    function paint(p) {
+      for (var i = 0; i < els.length; i++) {
+        var o = els[i], k = clamp((p - o.a) / (o.b - o.a), 0, 1);
+        if (o.f) { o.e.style.opacity = k.toFixed(3); o.e.style.transform = 'scale(' + (0.3 + 0.7 * k).toFixed(3) + ')'; }
+        else o.e.style.strokeDashoffset = (1 - k).toFixed(4);
+      }
+    }
+    function progress() {
+      var r = sec.getBoundingClientRect(), vh = W.innerHeight;
+      var maxScroll = Math.max(0, D.documentElement.scrollHeight - vh), y = W.scrollY || W.pageYOffset;
+      var startTop = vh * 0.92;                                   /* la sección asoma */
+      var endTop = r.top - (maxScroll - y) + 2;                   /* dónde queda al final de la página */
+      endTop = Math.min(endTop, startTop - 160);
+      return clamp((startTop - r.top) / (startTop - endTop), 0, 1);
+    }
+    function loop() {
+      target = progress();
+      cur += (target - cur) * 0.12;
+      if (Math.abs(target - cur) < 0.001) cur = target;
+      paint(cur);
+      if (vis || cur !== target) requestAnimationFrame(loop); else running = false;
+    }
+    function start() { if (!running) { running = true; requestAnimationFrame(loop); } }
+    if (REDUCED) { paint(1); return; }
+    paint(0);
+    new IntersectionObserver(function (es) { vis = es[0].isIntersecting; if (vis) start(); }, { threshold: 0 }).observe(sec);
+    W.addEventListener('resize', start);
+  })();
 
   /* ───────── nav: fondo al bajar ───────── */
   function onScroll() {
