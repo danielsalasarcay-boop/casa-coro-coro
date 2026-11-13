@@ -511,3 +511,11 @@ html:not(.js) #loader { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .ld-fish { animation: none; transform: translate(200px, 92px); }
 }
+
+/* Ubicación: línea pequeña en mayúsculas sin cambiar el alto de la sección
+   (antes: etiqueta 10 + margen del título 15; ahora: etiqueta 5 + 2 + línea 12 + 6) */
+.mapa .mapa-title { margin-bottom: 0; }
+.mapa .mapa-label { margin-bottom: 5px; }
+.mapa .mapa-hd { margin-bottom: 6px; }
+.mapa-place { font-size: 9px; line-height: 12px; height: 12px; margin: 2px 0 6px; font-weight: 500; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+@media (max-width: 360px) { .mapa-place { letter-spacing: .22em; } }
