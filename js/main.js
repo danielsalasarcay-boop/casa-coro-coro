@@ -62,7 +62,7 @@
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (en) {
         if (!en.isIntersecting) return;
-        var el = en.target, sib = $$(':scope > .rv', el.parentNode);
+        var el = en.target, sib = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.classList.contains('rv'); });
         var i = Math.max(0, sib.indexOf(el));
         el.style.setProperty('--rd', Math.min(i, 6) * 80 + 'ms');
         el.classList.add('in');
@@ -116,24 +116,6 @@
       });
       b.addEventListener('pointerleave', function () { b.style.transform = ''; });
     });
-
-    /* cursor */
-    var cur = $('.cursor');
-    if (cur) {
-      var cx = 0, cy = 0, tx = 0, ty = 0, moving = false;
-      D.addEventListener('pointermove', function (e) {
-        tx = e.clientX; ty = e.clientY;
-        cur.classList.add('on');
-        cur.classList.toggle('big', !!(e.target.closest && e.target.closest('a, button, .panel, .gal-cell')));
-        if (!moving) { moving = true; requestAnimationFrame(follow); }
-      });
-      D.addEventListener('pointerleave', function () { cur.classList.remove('on'); });
-      var follow = function () {
-        cx += (tx - cx) * 0.22; cy += (ty - cy) * 0.22;
-        cur.style.transform = 'translate(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px)';
-        if (Math.abs(tx - cx) + Math.abs(ty - cy) > 0.3) requestAnimationFrame(follow); else moving = false;
-      };
-    }
   }
 
   /* ───────── cardumen (canvas con profundidad) ───────── */
@@ -252,69 +234,120 @@
   if (sh && sh.getContext) Shoal(sh, { rgb: '15,61,62', gold: '201,151,63', eye: '246,240,228', max: 54 });
   if (sc && sc.getContext) Shoal(sc, { rgb: '213,231,216', gold: '227,183,104', eye: '15,61,62', max: 40, alpha: 0.55 });
 
-  /* ───────── el pez: zoom a través del ojo ───────── */
+  /* ───────── el pez: zoom a través del ojo (dibujado en canvas) ─────────
+     Todo el zoom se pinta en un canvas del tamaño de la pantalla, recortando la
+     foto a lo visible: no hay capas gigantes, así que va igual de fluido en PC y teléfono. */
   var pin = $('#pez');
   if (pin && !REDUCED) (function () {
-    var stage = $('.eye-stage', pin), fishEl = $('.eye-fish', pin), macro = $('.eye-macro', pin), copy = $('.eye-copy', pin),
-        dest = $('.eye-dest', pin), cols = $('.dest-cols', pin), plaque = $('.dest-plaque', pin);
-    var vw, vh, FW, FH, MD, s0, s1, sHide, dx, dy, cur = 0, vis = false, run = false, tk = 0;
-    var EX = 0.1775, EY = 0.4946, EYE_IN_FISH = 0.06, EYE_IN_MACRO = 0.63, PUPIL = 0.15;
-    function measure() {
-      vw = stage.clientWidth; vh = stage.clientHeight;
-      FW = fishEl.offsetWidth; FH = fishEl.offsetHeight; MD = macro.offsetWidth;
-      var topPct = parseFloat(getComputedStyle(fishEl).top) / vh;
-      s0 = (EYE_IN_FISH * FW) / (EYE_IN_MACRO * MD);
-      s1 = 1.14 * (Math.sqrt(vw * vw + vh * vh) / 2) / (PUPIL * MD);
-      sHide = (Math.sqrt(vw * vw + vh * vh) / 2) / (0.3 * MD);
-      dx = vw / 2 - (vw / 2 + (EX - 0.5) * FW);
-      dy = vh / 2 - (topPct * vh + (EY - 0.5) * FH);
-    }
+    var stage = $('.eye-stage', pin), cv = $('#eye-canvas'), ctx = cv.getContext('2d'), copy = $('.eye-copy', pin), dest = $('.eye-dest', pin);
+    var small = Math.min(W.innerWidth, W.innerHeight) <= 820;
+    var fish = new Image(), macroSrc = new Image(), macro = null;
+    var cw = 0, ch = 0, dpr = 1, FW, FH, MD, fx, fy, s0, s1, sHide, dx, dy;
+    var cur = 0, last = -1, vis = false, run = false, tk = 0, pinned = false, shown = false;
+    var EX = 0.1775, EY = 0.4946, AR = 1.7917, EYE_IN_FISH = 0.06, EYE_IN_MACRO = 0.63, PUPIL = 0.15;
     function ss(x) { x = clamp(x, 0, 1); return x * x * (3 - 2 * x); }
-    function apply(p) {
+    fish.decoding = 'async'; macroSrc.decoding = 'async';
+    fish.onload = function () { last = -1; };
+    macroSrc.onload = function () {
+      /* ojo macro con borde difuminado, para que se funda con la cabeza del pez */
+      var n = macroSrc.naturalWidth, c = D.createElement('canvas'), x = c.getContext('2d');
+      c.width = c.height = n;
+      x.drawImage(macroSrc, 0, 0, n, n);
+      var g = x.createRadialGradient(n / 2, n / 2, n * 0.28, n / 2, n / 2, n * 0.445);
+      g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      x.globalCompositeOperation = 'destination-in'; x.fillStyle = g; x.fillRect(0, 0, n, n);
+      macro = c; last = -1;
+    };
+    fish.src = 'img/pez/coro-blanco-' + (small ? '1600' : '3200') + '.webp';
+    macroSrc.src = 'img/pez/ojo-' + (small ? '900' : '1800') + '.jpg';
+
+    function measure() {
+      var w = stage.clientWidth, h = stage.clientHeight;
+      if (w === cw && Math.abs(h - ch) < 120 && cw) return;   /* la barra del navegador móvil no re-dibuja todo */
+      cw = w; ch = h; dpr = Math.min(W.devicePixelRatio || 1, 2);
+      cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr);
+      var narrow = cw <= 900;
+      FW = narrow ? cw * 1.02 : Math.min(cw * 0.62, 900); FH = FW / AR;
+      fx = cw / 2 - FW / 2; fy = ch * (narrow ? 0.47 : 0.52) - FH / 2;
+      MD = Math.min(Math.min(cw, ch) * 0.78, 640);
+      var half = Math.sqrt(cw * cw + ch * ch) / 2;
+      s0 = (EYE_IN_FISH * FW) / (EYE_IN_MACRO * MD);
+      s1 = 1.14 * half / (PUPIL * MD);
+      sHide = half / (0.28 * MD);
+      dx = cw / 2 - (fx + EX * FW); dy = ch / 2 - (fy + EY * FH);
+      last = -1;
+    }
+    /* dibuja solo la parte visible de una imagen colocada en (x,y,w,h) */
+    function blit(img, x, y, w, h, alpha) {
+      var x0 = Math.max(0, x), y0 = Math.max(0, y), x1 = Math.min(cw, x + w), y1 = Math.min(ch, y + h);
+      if (x1 <= x0 || y1 <= y0 || alpha <= 0.003) return;
+      var iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(img, (x0 - x) / w * iw, (y0 - y) / h * ih, (x1 - x0) / w * iw, (y1 - y0) / h * ih, x0, y0, x1 - x0, y1 - y0);
+    }
+    function draw(p) {
       var q = clamp((p - 0.1) / 0.68, 0, 1);
       var s = s0 * Math.pow(s1 / s0, q), Z = s / s0;
-      var k = ss(q / 0.22), bob = (1 - k) * Math.sin(tk * 0.02) * 7;
-      /* el pez sigue debajo mientras el ojo macro se funde encima; se oculta cuando el macro ya llena la pantalla */
-      var fo = 1 - clamp((s - sHide * 0.55) / (sHide * 0.45), 0, 1);
-      fishEl.style.opacity = fo.toFixed(3);
-      fishEl.style.visibility = fo <= 0 ? 'hidden' : 'visible';
-      fishEl.style.transform = 'translate(-50%,-50%) translate(' + (k * dx).toFixed(1) + 'px,' + (k * dy + bob).toFixed(1) + 'px) scale(' + Z.toFixed(4) + ')';
-      var mo = ss((s - 0.3) / 0.75);
-      macro.style.opacity = mo.toFixed(3);
-      macro.style.visibility = mo <= 0 ? 'hidden' : 'visible';
-      macro.style.transform = 'translate(-50%,-50%) scale(' + s.toFixed(4) + ')';
-      var co = 1 - clamp((p - 0.05) / 0.1, 0, 1);
+      var k = ss(q / 0.22), bob = (1 - k) * Math.sin(tk * 0.02) * 6;
+      var ex = fx + EX * FW + k * dx, ey = fy + EY * FH + k * dy + bob;
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.globalAlpha = 1;
+      ctx.clearRect(0, 0, cw, ch);
+      if (fish.complete && fish.naturalWidth) {
+        var sh = 1 - clamp((Z - 1) / 0.8, 0, 1);
+        if (sh > 0.01) {       /* sombra suave bajo el pez */
+          var cx = fx + FW * 0.5, cy = fy + FH * 0.94 + bob * 0.3;
+          ctx.save(); ctx.translate(cx, cy); ctx.scale(1, 0.13);
+          var g = ctx.createRadialGradient(0, 0, 0, 0, 0, FW * 0.42);
+          g.addColorStop(0, 'rgba(15,61,62,' + (0.2 * sh).toFixed(3) + ')'); g.addColorStop(1, 'rgba(15,61,62,0)');
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, FW * 0.42, 0, 6.2832); ctx.fill(); ctx.restore();
+        }
+        blit(fish, ex - EX * FW * Z, ey - EY * FH * Z, FW * Z, FH * Z, 1 - clamp((s - sHide * 0.6) / (sHide * 0.4), 0, 1));
+      }
+      if (macro) blit(macro, ex - MD * s / 2, ey - MD * s / 2, MD * s, MD * s, ss((s - 0.3) / 0.75));
+      ctx.globalAlpha = 1;
+
+      var co = 1 - clamp((p - 0.04) / 0.09, 0, 1);
       copy.style.opacity = co.toFixed(3);
-      copy.style.transform = 'translateY(' + (-(1 - co) * 40).toFixed(1) + 'px)';
+      copy.style.transform = 'translate3d(0,' + (-(1 - co) * 36).toFixed(1) + 'px,0)';
       copy.style.visibility = co <= 0 ? 'hidden' : 'visible';
+
       var R = PUPIL * MD * s * clamp((s - 0.9) / 1.3, 0, 1);
+      var open = q >= 0.999;
       dest.style.visibility = R > 1 ? 'visible' : 'hidden';
-      dest.style.clipPath = dest.style.webkitClipPath = q >= 1 ? 'none' : 'circle(' + R.toFixed(1) + 'px at 50% 50%)';
-      cols.style.setProperty('--shift', ((1 - p) * 160).toFixed(1) + 'px');
-      cols.style.scale = (1.18 - 0.18 * ss((p - 0.5) / 0.5)).toFixed(4);
-      var po = ss((p - 0.76) / 0.14);
-      plaque.style.opacity = po.toFixed(3);
-      plaque.style.transform = 'translateY(' + ((1 - po) * 40).toFixed(1) + 'px) scale(' + (0.94 + 0.06 * po).toFixed(3) + ')';
-      plaque.style.pointerEvents = po > 0.6 ? 'auto' : 'none';
-      if (nav) nav.classList.toggle('hide', pinned && p < 0.74);
+      dest.style.clipPath = dest.style.webkitClipPath = open ? 'none' : 'circle(' + R.toFixed(1) + 'px at 50% 50%)';
+      var show = p > 0.7;
+      if (show !== shown) { shown = show; dest.classList.toggle('shown', show); }
+      cv.style.visibility = open ? 'hidden' : 'visible';
     }
-    var pinned = false;
     function loop() {
       if (!vis) { run = false; if (nav) nav.classList.remove('hide'); return; }
       tk++;
-      var r = pin.getBoundingClientRect(), total = r.height - vh;
-      pinned = r.top <= 60 && r.bottom >= vh - 60;
+      var r = pin.getBoundingClientRect(), total = Math.max(1, r.height - ch);
+      pinned = r.top <= 60 && r.bottom >= ch - 60;
       var p = clamp(-r.top / total, 0, 1);
-      cur += (p - cur) * 0.13;
-      if (Math.abs(p - cur) < 0.0004) cur = p;
-      apply(cur);
+      cur += (p - cur) * 0.14;
+      if (Math.abs(p - cur) < 0.0005) cur = p;
+      if (cur !== last || cur < 0.2) { draw(cur); last = cur; }
+      if (nav) nav.classList.toggle('hide', pinned && cur < 0.72);
       requestAnimationFrame(loop);
     }
-    measure(); apply(0);
-    W.addEventListener('resize', function () { measure(); apply(cur); });
-    W.addEventListener('load', function () { measure(); apply(cur); });
-    new IntersectionObserver(function (es) { vis = es[0].isIntersecting; if (vis && !run) { run = true; requestAnimationFrame(loop); } }, { threshold: 0 }).observe(pin);
+    /* la galería queda centrada en pantalla; el hueco que sobra debajo se recorta
+       subiendo la sección siguiente, para que no haya espacio muerto al seguir bajando */
+    var destIn = $('.dest-in', pin);
+    function trim() {
+      var gap = Math.max(0, stage.clientHeight - (destIn.offsetTop + destIn.offsetHeight));
+      pin.style.marginBottom = -Math.round(gap) + 'px';
+    }
+    measure(); draw(0); trim();
+    W.addEventListener('load', trim);
+    if (D.fonts && D.fonts.ready) D.fonts.ready.then(trim);
+    W.addEventListener('resize', function () { measure(); draw(cur); trim(); });
+    W.addEventListener('orientationchange', function () { cw = 0; setTimeout(function () { measure(); draw(cur); trim(); }, 250); });
+    new IntersectionObserver(function (es) { vis = es[0].isIntersecting; if (vis && !run) { run = true; measure(); requestAnimationFrame(loop); } }, { threshold: 0 }).observe(pin);
   })();
+  else if (pin) { var dd = $('.eye-dest', pin); if (dd) dd.classList.add('shown'); }
 
   /* ───────── nav: fondo al bajar ───────── */
   function onScroll() {
@@ -378,6 +411,12 @@
     D.addEventListener('langchange', function () { if (!lb.hidden) lbShow(lbI, true); });
   }
   var ALL = CORO.fotos.map(function (_, i) { return i; });
+  $$('.dest-ph').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var i = ALL.filter(function (j) { return CORO.fotos[j].f === b.dataset.foto; })[0];
+      lbOpen(ALL, i || 0);
+    });
+  });
 
   /* ───────── espacios: paneles ───────── */
   var panels = $$('.panel');

@@ -23,8 +23,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="img/casa/portada.jpg" fetchpriority="high">
-<link rel="stylesheet" href="css/styles.css?v=2">
+<link rel="preload" as="image" href="img/casa/portada.jpg" imagesrcset="img/casa/portada-900.jpg 675w, img/casa/portada.jpg 960w" imagesizes="(max-width: 900px) 78vw, 36vw" fetchpriority="high">
+<link rel="stylesheet" href="css/styles.css?v=7">
 
 <script type="application/ld+json">
 {
@@ -84,8 +84,8 @@
     <a href="#sobre" data-es="La Casa" data-en="The House">La Casa</a>
     <a href="#espacios" data-es="Espacios" data-en="Spaces">Espacios</a>
     <a href="galeria.html" data-es="Galería" data-en="Gallery">Galería</a>
-    <a href="#comodidades" data-es="Comodidades" data-en="Amenities">Comodidades</a>
     <a href="#ubicacion" data-es="Ubicación" data-en="Location">Ubicación</a>
+    <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
   </nav>
   <div class="nav-right">
     <div class="lang" role="group" aria-label="Idioma / Language">
@@ -102,8 +102,8 @@
   <a href="#sobre" data-es="La Casa" data-en="The House">La Casa</a>
   <a href="#espacios" data-es="Espacios" data-en="Spaces">Espacios</a>
   <a href="galeria.html" data-es="Galería" data-en="Gallery">Galería</a>
-  <a href="#comodidades" data-es="Comodidades" data-en="Amenities">Comodidades</a>
   <a href="#ubicacion" data-es="Ubicación" data-en="Location">Ubicación</a>
+  <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
   <a class="btn btn-wa" data-wa target="_blank" rel="noopener noreferrer"><svg width="18" height="18"><use href="#i-wa"/></svg><span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
   <div class="lang" role="group" aria-label="Idioma / Language">
     <button data-lang="es" class="active">ES</button><span aria-hidden="true">/</span><button data-lang="en">EN</button>
@@ -138,9 +138,6 @@
           <img src="img/casa/portada.jpg" srcset="img/casa/portada-900.jpg 675w, img/casa/portada.jpg 960w" sizes="(max-width: 900px) 78vw, 36vw" alt="Terraza principal de Casa Coro Coro con sofás blancos y alfombra turquesa" width="960" height="1280" fetchpriority="high" decoding="async">
           <span class="glare" aria-hidden="true"></span>
         </div>
-        <div class="hero-card tilt-layer" style="--z:70px">
-          <img src="img/casa/terraza-lounge-900.jpg" alt="Lounge de la terraza" width="675" height="900" loading="lazy" decoding="async">
-        </div>
         <div class="badge tilt-layer" style="--z:110px" aria-hidden="true">
           <svg viewBox="0 0 200 200" class="badge-ring">
             <defs><path id="badge-path" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>
@@ -155,19 +152,12 @@
   <a href="#sobre" class="scroll-cue" aria-label="Bajar"><span></span></a>
 </section>
 
-<!-- CINTA -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Gran Roque</span><i></i><span>5 habitaciones</span><i></i><span>Staff incluido</span><i></i><span>Jardín de arena</span><i></i><span>Terrazas</span><i></i><span>Los Roques</span><i></i>
-    <span>Gran Roque</span><i></i><span>5 habitaciones</span><i></i><span>Staff incluido</span><i></i><span>Jardín de arena</span><i></i><span>Terrazas</span><i></i><span>Los Roques</span><i></i>
-  </div>
-</div>
-
 <!-- ═════════ LA CASA ═════════ -->
 <section id="sobre" class="sec">
   <div class="wrap about">
     <div class="about-text">
       <p class="s-label rv" data-es="La casa" data-en="The house">La casa</p>
+      <div class="s-div rv" aria-hidden="true"><svg viewBox="-126 -92 252 146"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg></div>
       <h2 class="s-title rv" data-html data-es="Una casa con<br><em>alma de isla</em>" data-en="A house with<br><em>an island soul</em>">Una casa con<br><em>alma de isla</em></h2>
       <p class="lead rv" data-es="Casa Coro Coro está en Gran Roque, a pocos pasos del mar. Paredes de piedra coralina, madera oscura, verde menta y un jardín de arena en pleno corazón de la casa: aquí se vive descalzo." data-en="Casa Coro Coro is in Gran Roque, a few steps from the sea. Coral-stone walls, dark wood, mint green and a sand garden in the very heart of the house: here you live barefoot.">Casa Coro Coro está en Gran Roque, a pocos pasos del mar. Paredes de piedra coralina, madera oscura, verde menta y un jardín de arena en pleno corazón de la casa: aquí se vive descalzo.</p>
       <p class="body rv" data-es="Todas sus habitaciones tienen baño privado y aire acondicionado. Un encargado que cocina y dos personas más de servicio y limpieza se ocupan de cada detalle, para que lo único que tengas que decidir sea a qué cayo ir mañana." data-en="Every bedroom has a private bathroom and air conditioning. A manager who cooks, plus two more staff for service and housekeeping, take care of every detail — so the only thing you have to decide is which cay to visit tomorrow.">Todas sus habitaciones tienen baño privado y aire acondicionado. Un encargado que cocina y dos personas más de servicio y limpieza se ocupan de cada detalle, para que lo único que tengas que decidir sea a qué cayo ir mañana.</p>
@@ -184,10 +174,9 @@
         <figure class="ph ph-a tilt-layer rv-img" style="--z:0px">
           <img src="img/casa/sala-jardin.jpg" srcset="img/casa/sala-jardin-900.jpg 675w, img/casa/sala-jardin.jpg 960w" sizes="(max-width: 900px) 70vw, 30vw" alt="Sala con jardín de arena y pared de piedra coralina" width="960" height="1280" loading="lazy" decoding="async">
         </figure>
-        <figure class="ph ph-b tilt-layer rv-img" style="--z:80px" data-par="-40">
+        <figure class="ph ph-b tilt-layer rv-img" style="--z:80px">
           <img src="img/casa/sala-decoracion-900.jpg" alt="Detalle de la terraza con taparas y flores" width="675" height="900" loading="lazy" decoding="async">
         </figure>
-        <svg class="about-fish tilt-layer" style="--z:130px" viewBox="-126 -92 252 146" aria-hidden="true"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg>
       </div>
     </div>
   </div>
@@ -196,12 +185,7 @@
 <!-- ═════════ EL PEZ — zoom a través del ojo ═════════ -->
 <section id="pez" class="eye-pin" aria-label="El pez que da nombre a la casa">
   <div class="eye-stage">
-    <div class="eye-fish" aria-hidden="true">
-      <img src="img/pez/coro-blanco-1600.webp" srcset="img/pez/coro-blanco-1600.webp 1600w, img/pez/coro-blanco-3200.webp 3200w" sizes="(max-width: 900px) 240vw, 140vw" alt="" decoding="async" loading="lazy">
-    </div>
-    <div class="eye-macro" aria-hidden="true">
-      <img src="img/pez/ojo-900.jpg" srcset="img/pez/ojo-900.jpg 900w, img/pez/ojo-1800.jpg 1800w" sizes="100vw" alt="" decoding="async" loading="lazy">
-    </div>
+    <canvas class="eye-canvas" id="eye-canvas" aria-hidden="true"></canvas>
 
     <div class="eye-copy">
       <p class="s-label" data-es="El pez que da nombre a la casa" data-en="The fish the house is named after">El pez que da nombre a la casa</p>
@@ -212,17 +196,17 @@
 
     <!-- destino: lo que se ve al atravesar la pupila -->
     <div class="eye-dest">
-      <div class="dest-cols" aria-hidden="true">
-        <div class="dest-col" style="--s:-1"><img src="img/casa/terraza-900.jpg" alt="" loading="lazy" decoding="async"><img src="img/casa/jardin-arena-900.jpg" alt="" loading="lazy" decoding="async"></div>
-        <div class="dest-col" style="--s:1"><img src="img/casa/comedor-900.jpg" alt="" loading="lazy" decoding="async"><img src="img/casa/sala-jardin-900.jpg" alt="" loading="lazy" decoding="async"></div>
-        <div class="dest-col dest-mid" style="--s:-1"><img src="img/casa/portada-900.jpg" alt="" loading="lazy" decoding="async"><img src="img/casa/terraza-alta-900.jpg" alt="" loading="lazy" decoding="async"></div>
-        <div class="dest-col" style="--s:1"><img src="img/casa/patio-900.jpg" alt="" loading="lazy" decoding="async"><img src="img/casa/sala-tv-900.jpg" alt="" loading="lazy" decoding="async"></div>
-        <div class="dest-col" style="--s:-1"><img src="img/casa/terraza-lounge-900.jpg" alt="" loading="lazy" decoding="async"><img src="img/casa/jardin-aereo-900.jpg" alt="" loading="lazy" decoding="async"></div>
-      </div>
-      <div class="dest-plaque">
-        <svg class="plaque-fish" viewBox="-126 -92 252 146" aria-hidden="true"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg>
-        <p class="s-label" data-es="Bienvenido" data-en="Welcome">Bienvenido</p>
-        <h2 class="s-title" data-html data-es="Así se ve<br><em>Coro Coro</em>" data-en="This is<br><em>Coro Coro</em>">Así se ve<br><em>Coro Coro</em></h2>
+      <div class="dest-in">
+        <p class="s-label" data-es="Galería" data-en="Gallery">Galería</p>
+        <div class="s-div" aria-hidden="true"><svg viewBox="-126 -92 252 146"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg></div>
+        <h2 class="s-title" data-html data-es="Así se ve <em>Coro Coro</em>" data-en="This is <em>Coro Coro</em>">Así se ve <em>Coro Coro</em></h2>
+        <div class="dest-row">
+          <button class="dest-ph" data-foto="terraza" style="--i:0" aria-label="Terraza techada"><img src="img/casa/terraza-900.jpg" alt="Terraza techada" width="675" height="900" loading="lazy" decoding="async"></button>
+          <button class="dest-ph" data-foto="sala-jardin" style="--i:1" aria-label="Sala y jardín de arena"><img src="img/casa/sala-jardin-900.jpg" alt="Sala y jardín de arena" width="675" height="900" loading="lazy" decoding="async"></button>
+          <button class="dest-ph" data-foto="portada" style="--i:2" aria-label="Terraza principal"><img src="img/casa/portada-900.jpg" alt="Terraza principal" width="675" height="900" loading="lazy" decoding="async"></button>
+          <button class="dest-ph" data-foto="comedor" style="--i:3" aria-label="Comedor"><img src="img/casa/comedor-900.jpg" alt="Comedor" width="675" height="900" loading="lazy" decoding="async"></button>
+          <button class="dest-ph" data-foto="patio" style="--i:4" aria-label="Jardín de arena"><img src="img/casa/patio-900.jpg" alt="Jardín de arena" width="675" height="900" loading="lazy" decoding="async"></button>
+        </div>
         <a href="galeria.html" class="btn btn-ink"><span data-es="Explorar la galería" data-en="Explore the gallery">Explorar la galería</span><span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
@@ -232,10 +216,11 @@
 <!-- ═════════ ESPACIOS ═════════ -->
 <section id="espacios" class="sec">
   <div class="wrap">
-    <div class="sec-hd">
+    <div class="sec-hd sec-hd-c">
       <p class="s-label rv" data-es="Los espacios" data-en="The spaces">Los espacios</p>
+      <div class="s-div rv" aria-hidden="true"><svg viewBox="-126 -92 252 146"><use href="#i-fish" x="-126" y="-92" width="252" height="146"/></svg></div>
       <h2 class="s-title rv" data-html data-es="Cada rincón,<br><em>una pausa</em>" data-en="Every corner,<br><em>a pause</em>">Cada rincón,<br><em>una pausa</em></h2>
-      <p class="s-sub rv" data-es="Pasa el cursor o toca cada espacio para abrirlo." data-en="Hover or tap each space to open it.">Pasa el cursor o toca cada espacio para abrirlo.</p>
+      <p class="s-sub rv" data-es="Los tres lugares donde pasa la vida en Coro Coro." data-en="The three places where life happens at Coro Coro.">Los tres lugares donde pasa la vida en Coro Coro.</p>
     </div>
 
     <div class="panels rv" id="panels">
@@ -272,79 +257,40 @@
           </div>
         </div>
       </article>
-      <article class="panel" data-set="cocina" tabindex="0">
-        <img src="img/casa/cocina-barra.jpg" srcset="img/casa/cocina-barra-900.jpg 675w, img/casa/cocina-barra.jpg 768w" sizes="(max-width: 900px) 80vw, 40vw" alt="Barra de la cocina con taburetes" width="768" height="1024" loading="lazy" decoding="async">
-        <div class="panel-in">
-          <span class="panel-n">04</span>
-          <h3 class="panel-t" data-es="Cocina y barra" data-en="Kitchen &amp; bar">Cocina y barra</h3>
-          <div class="panel-more">
-            <p data-es="Cocina totalmente equipada y una barra con taburetes para acompañar al que cocina, con café en la mañana o algo frío en la tarde." data-en="A fully equipped kitchen and a bar with stools to keep the cook company — coffee in the morning, something cold in the afternoon.">Cocina totalmente equipada y una barra con taburetes para acompañar al que cocina, con café en la mañana o algo frío en la tarde.</p>
-            <button class="link-btn" data-open data-es="Ver fotos →" data-en="View photos →">Ver fotos →</button>
-          </div>
-        </div>
-      </article>
-      <article class="panel" data-set="tv" tabindex="0">
-        <img src="img/casa/sala-tv.jpg" srcset="img/casa/sala-tv-900.jpg 675w, img/casa/sala-tv.jpg 960w" sizes="(max-width: 900px) 80vw, 40vw" alt="Sala de TV con sofá en L" width="960" height="1280" loading="lazy" decoding="async">
-        <div class="panel-in">
-          <span class="panel-n">05</span>
-          <h3 class="panel-t" data-es="Sala de TV" data-en="TV lounge">Sala de TV</h3>
-          <div class="panel-more">
-            <p data-es="Un rincón fresco con sofá en L para la siesta, una película o esperar a que baje el sol." data-en="A cool corner with an L-shaped sofa for a nap, a movie, or waiting for the sun to go down.">Un rincón fresco con sofá en L para la siesta, una película o esperar a que baje el sol.</p>
-            <button class="link-btn" data-open data-es="Ver fotos →" data-en="View photos →">Ver fotos →</button>
-          </div>
-        </div>
-      </article>
     </div>
 
-    <!-- Habitaciones -->
-    <div class="rooms">
-      <div class="rooms-hd rv">
-        <h3 class="rooms-t" data-html data-es="Cinco habitaciones,<br><em>todas con baño privado</em>" data-en="Five bedrooms,<br><em>all with private bathroom</em>">Cinco habitaciones,<br><em>todas con baño privado</em></h3>
-        <p data-es="Y aire acondicionado en cada una." data-en="And air conditioning in each one.">Y aire acondicionado en cada una.</p>
-      </div>
-      <ul class="rooms-list">
-        <li class="room rv"><span class="room-n">01</span><svg><use href="#i-bed"/></svg><span data-es="Habitación con cama King" data-en="Bedroom with King bed">Habitación con cama King</span></li>
-        <li class="room rv"><span class="room-n">02</span><svg><use href="#i-bed"/></svg><span data-es="Habitación con cama Queen" data-en="Bedroom with Queen bed">Habitación con cama Queen</span></li>
-        <li class="room rv"><span class="room-n">03</span><svg><use href="#i-bed"/></svg><span data-es="Habitación con dos camas matrimoniales" data-en="Bedroom with two full beds">Habitación con dos camas matrimoniales</span></li>
-        <li class="room rv"><span class="room-n">04</span><svg><use href="#i-bed"/></svg><span data-es="Habitación con literas" data-en="Bedroom with bunk beds">Habitación con literas</span></li>
-        <li class="room rv"><span class="room-n">05</span><svg><use href="#i-bed"/></svg><span data-es="Habitación con literas" data-en="Bedroom with bunk beds">Habitación con literas</span></li>
-        <li class="room room-x rv"><span class="room-n">+</span><svg><use href="#i-tv"/></svg><span data-es="Sala de TV y baño de visitas" data-en="TV lounge and guest bathroom">Sala de TV y baño de visitas</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ COMODIDADES ═════════ -->
-<section id="comodidades" class="sec sec-mint">
-  <div class="wrap">
-    <div class="sec-hd">
-      <p class="s-label rv" data-es="Incluido en tu estadía" data-en="Included in your stay">Incluido en tu estadía</p>
-      <h2 class="s-title rv" data-html data-es="Llegas y <em>ya está todo</em>" data-en="Arrive and <em>it's all set</em>">Llegas y <em>ya está todo</em></h2>
-    </div>
-    <div class="com">
-      <ul class="com-grid">
-        <li class="com-item rv"><svg><use href="#i-bath"/></svg><span data-es="5 habitaciones con baño privado" data-en="5 bedrooms with private bathroom">5 habitaciones con baño privado</span></li>
-        <li class="com-item rv"><svg><use href="#i-snow"/></svg><span data-es="Aire acondicionado en todas las habitaciones" data-en="A/C in every bedroom">Aire acondicionado en todas las habitaciones</span></li>
-        <li class="com-item rv"><svg><use href="#i-pot"/></svg><span data-es="Cocina totalmente equipada" data-en="Fully equipped kitchen">Cocina totalmente equipada</span></li>
-        <li class="com-item rv"><svg><use href="#i-linen"/></svg><span data-es="Lencería completa" data-en="Complete linens">Lencería completa</span></li>
-        <li class="com-item rv"><svg><use href="#i-bolt"/></svg><span data-es="Planta eléctrica de 40 kW" data-en="40 kW power generator">Planta eléctrica de 40 kW</span></li>
-        <li class="com-item rv"><svg><use href="#i-drop"/></svg><span data-es="Tanque de agua de 12.000 litros" data-en="12,000-liter water tank">Tanque de agua de 12.000 litros</span></li>
-      </ul>
-      <div class="staff">
-        <div class="staff-card rv" data-tilt-card>
-          <span class="staff-n">01</span><svg><use href="#i-chef"/></svg>
-          <strong data-es="Encargado que cocina" data-en="A manager who cooks">Encargado que cocina</strong>
-          <span data-es="Gastronomía excelente, servida en casa." data-en="Excellent cuisine, served at home.">Gastronomía excelente, servida en casa.</span>
+    <!-- Incluido: habitaciones, comodidades y staff -->
+    <div class="inc" id="comodidades">
+      <p class="inc-title rv" data-es="Incluido en tu estadía" data-en="Included in your stay">Incluido en tu estadía</p>
+      <div class="inc-grid">
+        <div class="inc-col rv">
+          <h3 class="inc-h" data-es="5 habitaciones" data-en="5 bedrooms">5 habitaciones</h3>
+          <ul class="inc-list">
+            <li><svg><use href="#i-bed"/></svg><span data-es="Cama King" data-en="King bed">Cama King</span></li>
+            <li><svg><use href="#i-bed"/></svg><span data-es="Cama Queen" data-en="Queen bed">Cama Queen</span></li>
+            <li><svg><use href="#i-bed"/></svg><span data-es="Dos camas matrimoniales" data-en="Two full beds">Dos camas matrimoniales</span></li>
+            <li><svg><use href="#i-bed"/></svg><span data-es="Dos habitaciones con literas" data-en="Two bedrooms with bunk beds">Dos habitaciones con literas</span></li>
+            <li><svg><use href="#i-bath"/></svg><span data-es="Todas con baño privado" data-en="All with private bathroom">Todas con baño privado</span></li>
+            <li><svg><use href="#i-tv"/></svg><span data-es="Sala de TV y baño de visitas" data-en="TV lounge and guest bathroom">Sala de TV y baño de visitas</span></li>
+          </ul>
         </div>
-        <div class="staff-card rv" data-tilt-card>
-          <span class="staff-n">02</span><svg><use href="#i-team"/></svg>
-          <strong data-es="Dos personas de servicio" data-en="Two service staff">Dos personas de servicio</strong>
-          <span data-es="Pendientes de ti durante toda la estadía." data-en="Looking after you throughout your stay.">Pendientes de ti durante toda la estadía.</span>
+        <div class="inc-col rv">
+          <h3 class="inc-h" data-es="Comodidades" data-en="Amenities">Comodidades</h3>
+          <ul class="inc-list">
+            <li><svg><use href="#i-snow"/></svg><span data-es="Aire acondicionado en cada habitación" data-en="A/C in every bedroom">Aire acondicionado en cada habitación</span></li>
+            <li><svg><use href="#i-pot"/></svg><span data-es="Cocina totalmente equipada" data-en="Fully equipped kitchen">Cocina totalmente equipada</span></li>
+            <li><svg><use href="#i-linen"/></svg><span data-es="Lencería completa" data-en="Complete linens">Lencería completa</span></li>
+            <li><svg><use href="#i-bolt"/></svg><span data-es="Planta eléctrica de 40 kW" data-en="40 kW power generator">Planta eléctrica de 40 kW</span></li>
+            <li><svg><use href="#i-drop"/></svg><span data-es="Tanque de agua de 12.000 litros" data-en="12,000-liter water tank">Tanque de agua de 12.000 litros</span></li>
+          </ul>
         </div>
-        <div class="staff-card rv" data-tilt-card>
-          <span class="staff-n">03</span><svg><use href="#i-spark"/></svg>
-          <strong data-es="Limpieza diaria" data-en="Daily housekeeping">Limpieza diaria</strong>
-          <span data-es="Habitaciones y áreas comunes." data-en="Bedrooms and common areas.">Habitaciones y áreas comunes.</span>
+        <div class="inc-col rv">
+          <h3 class="inc-h" data-es="Staff" data-en="Staff">Staff</h3>
+          <ul class="inc-list">
+            <li><svg><use href="#i-chef"/></svg><span data-es="Encargado que cocina" data-en="A manager who cooks">Encargado que cocina</span></li>
+            <li><svg><use href="#i-team"/></svg><span data-es="Dos personas de servicio" data-en="Two service staff">Dos personas de servicio</span></li>
+            <li><svg><use href="#i-spark"/></svg><span data-es="Limpieza diaria" data-en="Daily housekeeping">Limpieza diaria</span></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -369,16 +315,12 @@
 <section id="contacto" class="sec sec-ink contact">
   <canvas class="shoal" id="shoal-contact" aria-hidden="true"></canvas>
   <div class="wrap contact-in">
-    <p class="s-label rv" data-es="Reservas" data-en="Reservations">Reservas</p>
-    <h2 class="s-title s-title-xl rv" data-html data-es="Reserva<br><em>tu estadía</em>" data-en="Book<br><em>your stay</em>">Reserva<br><em>tu estadía</em></h2>
-    <p class="s-sub rv" data-es="Escríbenos con tus fechas y el número de personas. Te respondemos directamente por WhatsApp." data-en="Send us your dates and the number of guests. We'll reply directly on WhatsApp.">Escríbenos con tus fechas y el número de personas. Te respondemos directamente por WhatsApp.</p>
-    <a class="btn btn-wa btn-xl magnetic rv" data-wa target="_blank" rel="noopener noreferrer"><svg width="24" height="24"><use href="#i-wa"/></svg><span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
-    <ul class="contact-row rv">
-      <li><svg><use href="#i-pin"/></svg><div><strong data-es="Ubicación" data-en="Location">Ubicación</strong><span>Gran Roque, Los Roques</span></div></li>
-      <li><svg><use href="#i-team"/></svg><div><strong data-es="Staff incluido" data-en="Staff included">Staff incluido</strong><span data-es="Encargado que cocina y 2 de servicio" data-en="Manager who cooks and 2 service staff">Encargado que cocina y 2 de servicio</span></div></li>
-      <li><svg><use href="#i-bed"/></svg><div><strong data-es="Casa completa" data-en="Whole house">Casa completa</strong><span data-es="5 habitaciones con baño privado" data-en="5 bedrooms with private bathroom">5 habitaciones con baño privado</span></div></li>
-      <li><svg><use href="#i-wa"/></svg><div><strong>WhatsApp</strong><span>+58 412-739-8347</span></div></li>
-    </ul>
+    <div class="contact-txt">
+      <p class="s-label" data-es="Reservas" data-en="Reservations">Reservas</p>
+      <h2 class="contact-title" data-html data-es="Reserva <em>tu estadía</em>" data-en="Book <em>your stay</em>">Reserva <em>tu estadía</em></h2>
+      <p class="contact-sub" data-es="Escríbenos con tus fechas y el número de personas." data-en="Send us your dates and the number of guests.">Escríbenos con tus fechas y el número de personas.</p>
+    </div>
+    <a class="btn btn-wa btn-lg magnetic" data-wa target="_blank" rel="noopener noreferrer"><svg width="22" height="22"><use href="#i-wa"/></svg><span data-es="Reservar por WhatsApp" data-en="Book on WhatsApp">Reservar por WhatsApp</span></a>
   </div>
 </section>
 
@@ -392,7 +334,6 @@
       <li><a href="#sobre" data-es="La Casa" data-en="The House">La Casa</a></li>
       <li><a href="#espacios" data-es="Espacios" data-en="Spaces">Espacios</a></li>
       <li><a href="galeria.html" data-es="Galería" data-en="Gallery">Galería</a></li>
-      <li><a href="#comodidades" data-es="Comodidades" data-en="Amenities">Comodidades</a></li>
       <li><a href="#ubicacion" data-es="Ubicación" data-en="Location">Ubicación</a></li>
       <li><a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
     </ul>
@@ -416,9 +357,7 @@
   <div class="lb-count" id="lb-count" aria-live="polite"></div>
 </div>
 
-<div class="cursor" aria-hidden="true"></div>
-
-<script src="js/fotos.js?v=2"></script>
-<script src="js/main.js?v=2"></script>
+<script src="js/fotos.js?v=7"></script>
+<script src="js/main.js?v=7"></script>
 </body>
 </html>
